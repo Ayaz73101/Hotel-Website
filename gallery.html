@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Complex-Gallery</title>
+    <style>
+        .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the grid */
+}
+.gallery-item {
+    background: white; 
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Slightly stronger shadow */
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.gallery-item img {
+    width: 100%;
+    /* Use a fixed height for visual uniformity in the grid */
+    height: 250px; 
+    object-fit: cover;
+    display: block;
+}
+.gallery-item p {
+    padding: 15px 10px;
+    font-weight: bold;
+    color: #333;
+    background: #f0f0f0;
+    margin: 0;
+    font-size: 1.1em;
+}
+    </style>
+</head>
+<body>
+    <section id="gallery">
+    <h2>Our Photo Gallery</h2>
+    
+    <div class="gallery-grid">
+        
+        <!-- Image 1: Grand Lobby -->
+        <div class="gallery-item">
+            <!-- IMPORTANT: Replace 'lobby.jpg' with your actual image path -->
+            <img src="reception.png" alt="Reception Hall">
+            <p>Reception</p>
+        </div>
+
+        <!-- Image 2: Executive Suite -->
+        <div class="gallery-item">
+            <!-- IMPORTANT: Replace 'suite.jpg' with your actual image path -->
+            <img src="Bed-Room.png" alt="Executive Suite">
+            <p>Bed Room</p>
+        </div>
+
+        <!-- Image 3: Swimming Pool -->
+        <div class="gallery-item">
+            <!-- IMPORTANT: Replace 'pool.jpg' with your actual image path -->
+            <img src="Swimming-Pool.png" alt="Swimming Pool">
+            <p>Oversized Swimming Pool</p>
+        </div>
+
+        <!-- Image 4: Fine Dining -->
+        <div class="gallery-item">
+            <!-- IMPORTANT: Replace 'Dining-HAll.png' with your actual image path -->
+            <img src="Dining-HAll.png" alt="Fine Dining Restaurant">
+            <p>The Royal Dining Experience</p>
+        </div>
+        <!-- Image 5: Conference Hall -->
+        <div class="gallery-item">
+            <!-- IMPORTANT: Replace 'conference.jpg' with your actual image path -->
+            <img src="lobby.png" alt="Grand Hotel Lobby">
+            <p>Lobby</p>
+        </div>
+        
+        <!-- Image 6: Washroom/Spa -->
+        <div class="gallery-item">
+            <!-- IMPORTANT: Replace 'spa.jpg' with your actual image path -->
+            <img src="spa.png" alt="Luxury Spa">
+            <p>Relaxing Spa and Wellness Center</p>
+        </div>
+        
+    </div>
+</section>
+</body>
+</html>

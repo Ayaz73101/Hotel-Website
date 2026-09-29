@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Royal Complex</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Soft Neon Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ff6fa3, #e67e22);
+            border-radius: 4px;
+        }
+
+        /* Active Sidebar Link Glow */
+        .active-link {
+            box-shadow: 0 0 12px rgba(255, 111, 163, 0.6);
+            border: 1px solid #ff6fa3;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#0b0b0f',
+                        'secondary-dark': '#1a1a22',
+                        'accent': '#ff6fa3',
+                        'gold': '#e67e22',
+                        'card-bg': 'rgba(255,255,255,0.08)',
+                    },
+                    backdropBlur: {
+                        sm: '4px',
+                        md: '8px',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-primary-dark text-gray-200 min-h-screen font-sans">
+
+<div id="app" class="flex">
+
+<!------------------------------------------
+ SIDEBAR NAVIGATION
+------------------------------------------->
+<aside id="sidebar" class="w-64 bg-secondary-dark backdrop-blur-md shadow-xl h-screen sticky top-0 
+flex flex-col justify-between p-4 transform -translate-x-full md:translate-x-0 
+transition-transform duration-300">
+
+    <div>
+        <div class="text-3xl font-bold text-accent mb-8 p-2 border-b border-gray-700 text-center tracking-wide">
+            RC Admin
+        </div>
+
+        <nav class="space-y-3">
+            <a onclick="showSection('dashboard', this)" 
+                class="flex items-center space-x-3 p-3 rounded-lg text-white font-semibold 
+                bg-card-bg active-link cursor-pointer transition">
+                <span>🏠</span> <span>Dashboard</span>
+            </a>
+
+            <a onclick="showSection('bookings', this)"
+                class="flex items-center space-x-3 p-3 rounded-lg text-gray-400 hover:text-white hover:bg-card-bg transition cursor-pointer">
+                <span>📘</span> <span>Bookings</span>
+            </a>
+
+            <a onclick="showSection('rooms', this)"
+                class="flex items-center space-x-3 p-3 rounded-lg text-gray-400 hover:text-white hover:bg-card-bg transition cursor-pointer">
+                <span>🛏️</span> <span>Rooms & Pricing</span>
+            </a>
+
+            <a onclick="showSection('facilities', this)"
+                class="flex items-center space-x-3 p-3 rounded-lg text-gray-400 hover:text-white hover:bg-card-bg transition cursor-pointer">
+                <span>🏢</span> <span>Facilities</span>
+            </a>
+
+            <a onclick="showSection('enquiries', this)"
+                class="flex items-center space-x-3 p-3 rounded-lg text-gray-400 hover:text-white hover:bg-card-bg transition cursor-pointer">
+                <span>📨</span> <span>Enquiries</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Logout -->
+    <div class="p-2 border-t border-gray-700">
+        <a href="index.html" 
+            class="flex items-center space-x-3 p-3 text-gray-400 hover:text-red-500 transition cursor-pointer">
+            <span>🚪</span> <span>Logout</span>
+        </a>
+    </div>
+</aside>
+
+<!------------------------------------------
+ MAIN CONTENT AREA
+------------------------------------------->
+<main class="flex-1 p-4 md:p-8 overflow-y-auto">
+
+    <!-- HEADER -->
+    <header class="flex justify-between items-center mb-6 pb-2 border-b border-gray-700 sticky top-0 bg-primary-dark z-10">
+        <h1 class="text-3xl font-light text-white">
+            Royal Complex <span class="text-accent font-semibold">Admin</span>
+        </h1>
+
+        <button id="menu-btn" class="text-white md:hidden p-2 rounded-lg hover:bg-secondary-dark transition">
+            ☰
+        </button>
+    </header>
+
+<!------------------------------------------
+ SECTION 1: DASHBOARD (DEFAULT)
+------------------------------------------->
+<section id="dashboard" class="content-section">
+
+    <h2 class="text-2xl font-semibold text-accent mb-6">Overview Dashboard</h2>
+
+    <!-- KPI GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
+        <div class="bg-card-bg p-6 rounded-xl shadow-lg border border-accent">
+            <p class="text-sm text-gray-400">Total Bookings</p>
+            <p class="text-4xl font-bold text-white">148</p>
+            <p class="text-xs text-green-400">+12% Growth</p>
+        </div>
+
+        <div class="bg-card-bg p-6 rounded-xl shadow-lg border border-gold">
+            <p class="text-sm text-gray-400">Monthly Revenue</p>
+            <p class="text-4xl font-bold text-white">₹ 2.3M</p>
+            <p class="text-xs text-red-400">-4% Decline</p>
+        </div>
+
+        <div class="bg-card-bg p-6 rounded-xl shadow-lg border border-blue-400">
+            <p class="text-sm text-gray-400">Rooms Available</p>
+            <p class="text-4xl font-bold text-white">14 / 30</p>
+            <p class="text-xs text-yellow-400">47% Occupancy</p>
+        </div>
+
+        <div class="bg-card-bg p-6 rounded-xl shadow-lg border border-teal-400">
+            <p class="text-sm text-gray-400">New Enquiries</p>
+            <p class="text-4xl font-bold text-white">7</p>
+            <p class="text-xs text-blue-300">24h Update</p>
+        </div>
+
+    </div>
+
+    <!-- Recent Bookings -->
+    <div class="bg-card-bg backdrop-blur-md p-6 rounded-xl shadow-xl">
+        <h3 class="text-xl font-semibold text-accent mb-4">Recent Check-ins</h3>
+
+        <table class="min-w-full divide-y divide-gray-700">
+            <thead class="text-gray-400 text-sm uppercase">
+                <tr>
+                    <th class="px-3 py-2">Guest</th>
+                    <th class="px-3 py-2">Room</th>
+                    <th class="px-3 py-2">Check-In</th>
+                    <th class="px-3 py-2">Check-Out</th>
+                    <th class="px-3 py-2">Status</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-800">
+                <tr>
+                    <td class="px-3 py-3">Aryan Tiwari</td>
+                    <td class="px-3 py-3 text-accent">Executive Suite</td>
+                    <td class="px-3 py-3">2025-11-25</td>
+                    <td class="px-3 py-3">2025-11-28</td>
+                    <td class="px-3 py-3 text-green-300">Checked In</td>
+                </tr>
+
+                <tr>
+                    <td class="px-3 py-3">Vanshika Srivastava</td>
+                    <td class="px-3 py-3">Deluxe Room</td>
+                    <td class="px-3 py-3">2025-11-26</td>
+                    <td class="px-3 py-3">2025-12-01</td>
+                    <td class="px-3 py-3 text-yellow-300">Due Today</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<!------------------------------------------
+ SECTION 2: BOOKINGS
+------------------------------------------->
+<section id="bookings" class="content-section hidden">
+
+    <h2 class="text-2xl font-semibold text-accent mb-6">Manage Bookings</h2>
+
+    <div class="bg-card-bg p-6 rounded-xl shadow-xl backdrop-blur-md">
+
+        <div class="flex flex-wrap gap-3 mb-6">
+            <input type="date" class="bg-secondary-dark p-2 rounded-lg border border-gray-600 text-white">
+            <select class="bg-secondary-dark p-2 rounded-lg border border-gray-600 text-white">
+                <option>All Status</option>
+                <option>Confirmed</option>
+                <option>Checked In</option>
+            </select>
+            <button class="bg-accent px-4 py-2 rounded-lg hover:opacity-80">Search</button>
+        </div>
+
+        <table class="min-w-full divide-y divide-gray-700">
+            <thead class="text-gray-400 uppercase text-xs">
+                <tr>
+                    <th class="px-3 py-2">ID</th>
+                    <th class="px-3 py-2">Guest</th>
+                    <th class="px-3 py-2">Room</th>
+                    <th class="px-3 py-2">Total</th>
+                    <th class="px-3 py-2">Status</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-800 text-sm">
+                <tr>
+                    <td class="px-3 py-3 text-gray-400">#RC9874</td>
+                    <td class="px-3 py-3">Achal Pandey</td>
+                    <td class="px-3 py-3">Deluxe Room</td>
+                    <td class="px-3 py-3 text-green-400">₹10,000</td>
+                    <td class="px-3 py-3 text-green-300">Paid</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</section>
+
+
+<!------------------------------------------
+ SECTION 3: ROOMS & PRICING
+------------------------------------------->
+<section id="rooms" class="content-section hidden">
+
+    <h2 class="text-2xl font-semibold text-accent mb-6">Room & Pricing Management</h2>
+
+    <button class="bg-blue-600 px-4 py-2 rounded-lg mb-6 hover:bg-blue-700">+ Add Room</button>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="bg-card-bg p-6 rounded-xl border border-accent">
+            <h3 class="text-xl font-bold">Deluxe Room</h3>
+            <p class="text-3xl text-accent">₹10,000</p>
+        </div>
+
+        <div class="bg-card-bg p-6 rounded-xl border border-pink-400">
+            <h3 class="text-xl font-bold">Executive Suite</h3>
+            <p class="text-3xl text-pink-400">₹20,000</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!------------------------------------------
+ SECTION 4: FACILITIES
+------------------------------------------->
+<section id="facilities" class="content-section hidden">
+
+    <h2 class="text-2xl font-semibold text-accent mb-6">Facilities</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="bg-card-bg p-4 rounded-xl">
+            <h3 class="text-lg font-semibold">🍾 Party Hall</h3>
+            <p class="text-gray-300">Full booking support.</p>
+        </div>
+
+        <div class="bg-card-bg p-4 rounded-xl">
+            <h3 class="text-lg font-semibold">🍴 Restaurant</h3>
+            <p class="text-gray-300">7AM–11PM Service.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!------------------------------------------
+ SECTION 5: ENQUIRIES
+------------------------------------------->
+<section id="enquiries" class="content-section hidden">
+
+    <h2 class="text-2xl font-semibold text-accent mb-6">Enquiries</h2>
+
+    <div class="bg-card-bg p-6 rounded-xl">
+
+        <div class="bg-secondary-dark p-4 rounded-xl border border-accent mb-4">
+            <h4 class="font-bold text-accent">Anjali Deshpande</h4>
+            <p class="text-gray-300">Wedding Hall Query</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+</div>
+
+<!------------------------------------------
+ JAVASCRIPT CONTROLS
+------------------------------------------->
+<script>
+const sidebar = document.getElementById('sidebar');
+const menuBtn = document.getElementById('menu-btn');
+const navLinks = document.querySelectorAll('aside nav a');
+const sections = document.querySelectorAll('.content-section');
+
+menuBtn.onclick = () => sidebar.classList.toggle('-translate-x-full');
+
+function showSection(id, activeLink) {
+
+    sections.forEach(sec => sec.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+
+    navLinks.forEach(link => link.classList.remove('active-link'));
+    activeLink.classList.add('active-link');
+
+    if (window.innerWidth < 768) sidebar.classList.add('-translate-x-full');
+}
+</script>
+</body>
+</html>

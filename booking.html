@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Complex | Booking</title>
+
+<style>
+    body {margin: 0; font-family: Arial; background: #f3f3f3;}
+    header {
+        background: url('https://assets.architecturaldigest.in/photos/648c5425505cb5179481b301/16:9/w_2560%2Cc_limit/Untitled%2520design%2520(22).png') center/cover no-repeat;
+        height: 40vh; display: flex; justify-content: center; align-items: center;
+        color: aqua; text-shadow: 0 0 8px black;
+    }
+    header h1 {font-size: 3em;}
+    .container {
+        max-width: 600px; background: white; padding: 25px; margin: 30px auto;
+        border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    input, select, textarea {
+        width: 100%; padding: 12px; margin: 10px 0;
+        border-radius: 5px; border: 1px solid #888;
+    }
+    button {
+        width: 48%; padding: 12px; font-size: 16px;
+        border: none; border-radius: 5px; cursor: pointer;
+    }
+    .submit-btn {background: #e67e22; color: white;}
+    .reset-btn {background: #555; color: white;}
+    footer {text-align: center; padding: 15px; background: black; color: silver;}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Book Your Stay</h1>
+</header>
+
+<div class="container">
+    <h2 style="text-align:center;">Booking Form</h2>
+
+    <form id="bookingForm">
+
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="text" id="phone" placeholder="Phone Number" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="Aadhar" placeholder="Enter your aadhar number" required>
+        <select id="room" required>
+            <option value="">-- Select Room --</option>
+            <option>Deluxe Room - 10k/night</option>
+            <option>Executive Suite - 20k/night</option>
+        </select>
+
+        <label>Check-in Date</label>
+        <input type="date" id="checkin" required>
+
+        <label>Check-out Date</label>
+        <input type="date" id="checkout" required>
+
+        <input type="number" id="guests" placeholder="Number of Guests" min="1" max="10" required>
+
+        <textarea id="special" placeholder="Special Requests (Optional)" rows="4"></textarea>
+
+        <div style="display:flex; justify-content: space-between; margin-top:20px;">
+            <button type="button" class="submit-btn" onclick="submitBooking()">Submit</button>
+            <button type="reset" class="reset-btn">Reset</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+function submitBooking() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const room = document.getElementById("room").value;
+    const checkin = document.getElementById("checkin").value;
+    const checkout = document.getElementById("checkout").value;
+    const guests = document.getElementById("guests").value;
+    const special = document.getElementById("special").value;
+
+    if (!name || !phone || !email || !room || !checkin || !checkout || !guests) {
+        alert("Please fill all required fields!");
+        return;
+    }
+
+    // Store booking in LocalStorage
+    let booking = {
+        name, phone, email, room,
+        checkin, checkout, guests, special,
+        date: new Date().toLocaleString()
+    };
+
+    let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    bookings.push(booking);
+    localStorage.setItem("bookings", JSON.stringify(bookings));
+
+    // Booking confirmation popup
+    alert("🎉 Booking Successful!\nThank you " + name + " for choosing Royal Complex.");
+
+    // Auto-reset form
+    document.getElementById("bookingForm").reset();
+}
+</script>
+
+<footer>
+    <p>&copy; 2025 Royal Complex | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

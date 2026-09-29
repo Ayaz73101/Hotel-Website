@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Complex</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+}
+/* HEADER */
+header {
+    background: url('royal-complex.png') center/cover;
+    height: 60vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color:aqua;
+}
+header h1 {font-size: 3em; margin: 0;}
+header p {font-size: 1.2em;}
+header .btn{
+    background: #e67e22;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* NAV */
+nav {
+    background: black;
+    padding: 14px;
+    text-align: center;
+}
+nav a {
+    color: silver;
+    margin: 15px;
+    text-decoration:none;
+    font-weight:bold;
+}
+/* LAYOUT SECTIONS */
+section {padding: 40px 20px; text-align: center;}
+
+.rooms, .facilities, .pricing {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+/* ROOM CARD */
+.room-card {
+    background: #ffe0e5;
+    padding: 20px;
+    border-radius: 18px;
+    border: 2px solid #ff6fa3;
+    box-shadow: 0 0 15px rgba(255, 111, 163, 0.5);
+    transition: 0.3s ease;
+}
+.room-card:hover {
+    box-shadow: 0 0 25px rgba(255, 111, 163, 0.8);
+    transform: translateY(-5px);
+}
+.room-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+/* OFFER CARD */
+.offer-card {
+    background: #ffe0e5;
+    padding: 25px;
+    border-radius: 18px;
+    border: 2px solid #ff6fa3;
+    box-shadow: 0 0 15px rgba(255, 111, 163, 0.5);
+    transition: 0.3s ease;
+}
+.offer-card:hover {
+    box-shadow: 0 0 30px rgba(255, 111, 163, 1);
+    transform: translateY(-6px);
+}
+/* PREMIUM TESTIMONIAL SECTION */
+.testimonial-section h2, 
+#map h2, 
+#contact h2, 
+#faq h2 {
+    font-size: 2.4em;
+    background: linear-gradient(90deg, #ff6fa3, #ffb3c6);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 30px;
+}
+.testimonials {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.premium-card {
+    background: rgba(255,255,255,0.25);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    transition: 0.3s;
+}
+.premium-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 40px rgba(255, 111, 163, 0.4);
+}
+/* PROFILE */
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.profile img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 3px solid #ff6fa3;
+    margin-right: 12px;
+}
+.stars {color: gold; font-size: 1.1em;}
+/* REVIEW BOX */
+.review-box {
+    max-width: 550px;
+    margin: auto;
+    padding: 25px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.4);
+}
+.review-box input,
+.review-box textarea,
+.review-box select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ff6fa3;
+}
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #ff6fa3, #ff9bba);
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight:bold;
+}
+.submit-btn:hover {
+    box-shadow: 0 10px 30px rgba(255,111,163,0.6);
+    transform: translateY(-3px);
+}
+/* FAQ */
+.faq-item {
+    max-width: 800px;
+    margin: 12px auto;
+    padding: 18px;
+    text-align: left;
+    background: rgba(255,255,255,0.5);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.faq-answer {display:none; padding-top:10px;}
+/* FOOTER */
+footer {
+    background: #000;
+    padding: 20px;
+    text-align:center;
+    color: silver;
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+<a href="#home">Home</a>
+<a href="#rooms">Rooms</a>
+<a href="gallery.html">Gallery</a>
+<a href="#pricing">Pricing</a>
+<a href="#testimonials">Reviews</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+</nav>
+<!-- HEADER -->
+<header id="home">
+<h1>Welcome to Royal Complex</h1>
+<p>Luxury • Comfort • Hospitality</p>
+<a href="booking.html" class="btn">Book Now</a>
+</header>
+<!-- ROOMS -->
+<section id="rooms">
+<h2>Our Rooms</h2>
+<div class="rooms">
+<div class="room-card">
+    <img src="Bed-Room.png">
+    <h3>Deluxe Room</h3>
+    <p>From ₹10,000 / night</p>
+    <a href="booking.html" class="btn">Book Now</a>
+</div>
+<div class="room-card">
+    <img src="executive.png">
+    <h3>Executive Suite</h3>
+    <p>From ₹20,000 / night</p>
+    <a href="booking.html" class="btn">Book Now</a>
+</div>
+</div>
+</section>
+<!-- PRICING -->
+<section id="pricing">
+<h2>Pricing & Offers</h2>
+<div class="pricing">
+<div class="offer-card"><h3>Winter Offer</h3><p>20% OFF on all rooms!</p></div>
+<div class="offer-card"><h3>Festival Discount</h3><p>₹2000 OFF on Executive Suite</p></div>
+<div class="offer-card"><h3>Group Booking</h3><p>Free Party Hall for 5+ rooms</p></div>
+</div>
+</section>
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="testimonial-section">
+<h2>What Our Guests Say</h2>
+<div class="testimonials" id="review-list">
+    <div class="premium-card">
+        <div class="profile">
+            <img src="https://i.pravatar.cc/80?img=30">
+            <div><h3>Priya Singh</h3><div class="stars">★★★★★</div></div>
+        </div>
+        <p>Amazing place! The rooms are luxurious and clean.</p>
+    </div>
+    <div class="premium-card">
+        <div class="profile">
+            <img src="https://i.pravatar.cc/80?img=7">
+            <div><h3>Mohit Verma</h3><div class="stars">★★★★★</div></div>
+        </div>
+        <p>Best hotel experience in the district!</p>
+    </div>
+    <div class="premium-card">
+        <div class="profile">
+            <img src="https://i.pravatar.cc/80?img=3">
+            <div><h3>Farhan Khan</h3><div class="stars">★★★★★</div></div>
+        </div>
+        <p>Great service, food and hospitality.</p>
+    </div>
+</div>
+<hr style="margin:40px 0;">
+<h3>Write a Review</h3>
+<div class="review-box">
+    <input id="revName" type="text" placeholder="Your Name">
+    <textarea id="revText" rows="4" placeholder="Write your review..."></textarea>
+    <select id="revRating">
+        <option value="★★★★★">★★★★★</option>
+        <option value="★★★★☆">★★★★☆</option>
+        <option value="★★★☆☆">★★★☆☆</option>
+        <option value="★★☆☆☆">★★☆☆☆</option>
+        <option value="★☆☆☆☆">★☆☆☆☆</option>
+    </select>
+    <button onclick="submitReview()" class="submit-btn">Submit Review</button>
+</div>
+</section>
+<!-- MAP -->
+<section id="map">
+<h2>Location Map</h2>
+<div style="
+    max-width:900px; margin:auto;
+    border-radius:18px; overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);">
+<iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14236.776556835263!2d82.92775!3d27.17684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3996e4c6d0efb2b5%3A0x0000000000000000!2sRoyal%20Complex!5e0!3m2!1sen!2sin!4v1700000123456"
+    width="100%" height="350" loading="lazy">
+</iframe>
+</div>
+</section>
+<!-- FAQ -->
+<section id="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item" onclick="toggleFAQ(this)">
+<b>1. Do you provide free breakfast?</b>
+<div class="faq-answer">Yes, complimentary breakfast is included.</div>
+</div>
+<div class="faq-item" onclick="toggleFAQ(this)">
+<b>2. Is parking available?</b>
+<div class="faq-answer">Yes, we provide free secured parking.</div>
+</div>
+<div class="faq-item" onclick="toggleFAQ(this)">
+<b>3. Do you offer event/party hall booking?</b>
+<div class="faq-answer">Yes, we offer a fully equipped party hall.</div>
+</div>
+<div class="faq-item" onclick="toggleFAQ(this)">
+<b>4. How far are you from the main city?</b>
+<div class="faq-answer">Located in the heart of Bansi City.</div>
+</div>
+</section>
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact Us</h2>
+<div style="
+    max-width:700px;
+    margin:auto;
+    padding:30px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.4);
+    box-shadow:0 15px 30px rgba(0,0,0,0.2);
+    text-align:left;">
+    <p><b>Address:</b> Bansi, Siddharth Nagar, Uttar Pradesh 272152</p>
+    <p><b>Phone:</b> +91 7310195293</p>
+    <p><b>Email:</b> ayaz03570@gmail.com</p>
+    <hr style="margin:20px 0;">
+    <h3>Send a Message</h3>
+    <input type="text" placeholder="Your Name" style="padding:12px; width:100%; margin-bottom:10px;">
+    <input type="email" placeholder="Your Email" style="padding:12px; width:100%; margin-bottom:10px;">
+    <textarea placeholder="Your Message" rows="4" style="padding:12px; width:100%; border-radius:8px;"></textarea>
+    <button class="submit-btn" style="margin-top:15px;">Submit</button>
+</div>
+</section>
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer>
+<a href="admin-login.html" 
+   style="padding:10px 20px; background:#333; color:white; border-radius:5px; text-decoration:none;">
+   Admin Login
+</a>
+<p>&copy; 2025 Royal Complex | All Rights Reserved</p>
+</footer>
+<!-- SCRIPT -->
+<script>
+/* FAQ Toggle */
+function toggleFAQ(item) {
+    let answer = item.querySelector('.faq-answer');
+    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+}
+/* Load Saved Reviews */
+function loadReviews() {
+    let saved = JSON.parse(localStorage.getItem("reviews")) || [];
+    let container = document.getElementById("review-list");
+    saved.forEach(r => {
+        let div = document.createElement("div");
+        div.className = "premium-card";
+        div.innerHTML = `
+            <div class="profile">
+                <img src="https://i.pravatar.cc/80?u=${r.name}">
+                <div><h3>${r.name}</h3><div class="stars">${r.rating}</div></div>
+            </div>
+            <p>"${r.text}"</p>
+        `;
+        container.appendChild(div);
+    });
+}
+/* Submit a new Review */
+function submitReview() {
+    let name = document.getElementById("revName").value.trim();
+    let text = document.getElementById("revText").value.trim();
+    let rating = document.getElementById("revRating").value;
+
+    if (!name || !text) {
+        alert("Please enter both your name and review.");
+        return;
+    }
+    let review = { name, text, rating };
+    let saved = JSON.parse(localStorage.getItem("reviews")) || [];
+    saved.push(review);
+    localStorage.setItem("reviews", JSON.stringify(saved));
+    let container = document.getElementById("review-list");
+    let div = document.createElement("div");
+    div.className = "premium-card";
+    div.innerHTML = `
+        <div class="profile">
+            <img src="https://i.pravatar.cc/80?u=${name}">
+            <div><h3>${name}</h3><div class="stars">${rating}</div></div>
+        </div>
+        <p>"${text}"</p>
+    `;
+    container.appendChild(div);
+    document.getElementById("revName").value = "";
+    document.getElementById("revText").value = "";
+}
+window.onload = loadReviews;
+</script>
+</body>
+</html>
+
